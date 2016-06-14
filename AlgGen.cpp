@@ -6,7 +6,7 @@
 #include <math.h>	
 
 #define D 22			//ilo?? bit?w dla jednego osobnika
-#define MAX 100			//ilos? iteracji
+#define MAX 100			//ilos?? iteracji
 #define COUNT 300		//ilo?? osobnik?w w jednej populacji
 #define MUTPROB 0.01	//prawdopodobie?stwo mutacji
 using namespace std;
@@ -21,7 +21,7 @@ class Person
 {
 public:
 	int dna[D];				//ci?g binarny
-	double mark;			//wartos? przystosowania
+	double mark;			//wartos?? przystosowania
 	double probability;		//prawdopodobie?stwo wylosowania (dla selekcji metod? ruletki)
 							//konstruktor domy?lny
 	Person() {
@@ -44,7 +44,7 @@ void initialize(vektor_osob &population)
 	}
 }
 
-//funkcja konwertacji liczby binarnej w dziesi?tkow?
+//funkcja konwertacji liczby binarnej w dziesi?tn?
 double bin2dec(vektor_osob &population, int n) {
 	double sum = 0.0;
 	double x = 0.0;
@@ -61,7 +61,7 @@ void fitness(vektor_osob &population)
 	double x;
 	for (int i = 0; i < COUNT; i++) {
 		x = bin2dec(population, i);
-		population[i].mark = sin(2 * x) + pow(cos(4 * x), 3);	//przystosowanie liczymy wstawiaj?c "wartos?" danego osobnika do podanego wzoru
+		population[i].mark = sin(2 * x) + pow(cos(4 * x), 3);	//przystosowanie liczymy wstawiaj?c "wartos??" danego osobnika do podanego wzoru
 	}
 }
 
@@ -72,7 +72,7 @@ double select_prob(vektor_osob &population) {
 		population[i].mark = population[i].mark + 2.0;	/* tu dodajemy 2.0 dla tego ?e w niekt?rych przypadkach
 														warto?? prystosowania jest ujemna co jest niedopuszczalne przy u?yciu metody ruletki.
 														Wybra?em 2.0 dla tego, ?e to jest maksymalna warto?? ujemna, kt?r? mo?emy dosta? oceniaj?c warto?? przystosowania,
-														wi?c niezale?nie od otzrzymanej warto??i na ko?cu zawsze b?dzie liczba wi?ksza od 0
+														wi?c niezale?nie od otzrzymanej warto??i na ko?cu zawsze b?dzie liczba w?ksza od 0
 														*/
 		sum += abs(population[i].mark); //suma wszystkich warto??i przystosowa? dla danej populacji
 	}
@@ -143,7 +143,7 @@ void merge(vektor_osob &population, vektor_osob &buffer)
 	rulette(population, buffer);
 	int temp[D];
 	for (int i = 1; i<COUNT; i++) {
-		i1 = rand() % (COUNT / 2);//wybieram osob? do krzy?owania
+		i1 = rand() % (COUNT / 2);//wybieram osoby do krzy?owania
 		i2 = rand() % (COUNT / 2);
 		divider = rand() % D;//wybieram punkt krzy?owania
 		int k = 0;
