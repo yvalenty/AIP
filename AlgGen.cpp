@@ -108,3 +108,28 @@ double fRand(double fMin, double fMax)
 	double f = (double)rand() / RAND_MAX;
 	return fMin + f * (fMax - fMin);
 }
+
+//selekcja metod? ruletki
+void rulette(vektor_osob &population, vektor_osob &buffer)
+{
+	double sum = select_prob(population);
+	for (int k = 0; k < COUNT; k++) {
+		double sel = fRand(0, sum);
+		double tempsum = 0;
+		for (int i = 0; i < COUNT; i++) {
+			tempsum += population[i].probability;
+			if (tempsum > sel) {
+				buffer[k] = population[i];
+				break;
+			}
+		}
+	}
+}
+
+//mutacja
+void mutate(Person &osoba)
+{
+	int divider = rand() % D;
+	int mutagen = gen_random();
+	osoba.dna[divider] = mutagen;
+}
