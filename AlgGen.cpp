@@ -33,3 +33,13 @@ public:
 
 
 typedef vector<Person> vektor_osob;
+
+//funkcja inicializuj?ca populacj?
+void initialize(vektor_osob &population)
+{
+	for (int i = 0; i<COUNT; i++) {
+		Person *osobnik;
+		osobnik = new Person();
+		population.push_back(*osobnik);
+	}
+}
