@@ -81,3 +81,30 @@ double select_prob(vektor_osob &population) {
 	}
 	return sum;
 }
+
+//warunek funkcji sortuj?cej
+bool equal(Person left, Person right)
+{
+	return left.mark > right.mark ? true : false;
+}
+
+//funkcja sortuj?ca
+void sort(vektor_osob &population)
+{
+	sort(population.begin(), population.end(), equal);
+}
+
+//funkcja zamiany wektor?w
+void swap(vektor_osob *&population, vektor_osob *&buffer)
+{
+	vektor_osob *temp = population;
+	population = buffer;
+	buffer = temp;
+}
+
+//funkcja generacji liczb losowych typu double
+double fRand(double fMin, double fMax)
+{
+	double f = (double)rand() / RAND_MAX;
+	return fMin + f * (fMax - fMin);
+}
