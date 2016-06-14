@@ -171,3 +171,36 @@ inline void show(vektor_osob &o, int i)
 	cout << o[i - 1].mark;
 	cout << endl;
 }
+
+//zachowanie najbardziej pasuj?cej znalezionej warto?ci
+void save_max(vektor_osob &population, double &ff, double &fv) {
+	if (population[0].mark>ff) {
+		ff = population[0].mark;
+		fv = bin2dec(population, 0);
+	}
+}
+
+int main()
+{
+	srand(unsigned(time(NULL)));
+	vektor_osob population_1;
+	vektor_osob *population, *buffer;
+	double findfitness = 0;//ocena przystosowania najbardziej pasuj?cej znalezionej warto?ci
+	double findvalue = 0;//najbardziej pasuj?ca znaleziona warto?c
+	initialize(population_1);
+	population = &population_1;
+	buffer = &population_1;
+
+	for (int i = 0; i < MAX; i++) {
+		fitness(*population);
+		sort(*population);
+		save_max(*population, findfitness, findvalue);
+		show(*population, 1);
+		merge(*population, *buffer);
+		swap(population, buffer);
+	}
+	cout << "Znaleziony maximum wynosi: " << findfitness << endl;
+	cout << "W punkcie: " << findvalue << endl;
+	system("PAUSE");
+	return 0;
+}
