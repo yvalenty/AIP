@@ -133,3 +133,41 @@ void mutate(Person &osoba)
 	int mutagen = gen_random();
 	osoba.dna[divider] = mutagen;
 }
+
+
+//krzyzowanie
+void merge(vektor_osob &population, vektor_osob &buffer)
+{
+	double mutation = MUTPROB;
+	int divider, i1, i2;
+	rulette(population, buffer);
+	int temp[D];
+	for (int i = 1; i<COUNT; i++) {
+		i1 = rand() % (COUNT / 2);//wybieram osob? do krzy?owania
+		i2 = rand() % (COUNT / 2);
+		divider = rand() % D;//wybieram punkt krzy?owania
+		int k = 0;
+		for (int i = 0; i < D; i++) {
+			temp[i] = buffer[i1].dna[i];
+		}
+		for (int j = divider; j < D; j++) {
+				buffer[i1].dna[j] = population[i2].dna[j];
+				buffer[i2].dna[j] = temp[j];
+			}
+		if (rand() < mutation) mutate(buffer[i]);
+		i++;
+		
+	}
+}
+
+//wypisanie wynik?w
+inline void show(vektor_osob &o, int i)
+{
+	cout << i << "\t";
+	for (int k = 0; k < D; k++) {
+		cout << o[i-1].dna[k];
+	}
+	cout << "\t";
+	cout << o[i - 1].mark;
+	cout << endl;
+}
