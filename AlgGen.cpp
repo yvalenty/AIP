@@ -54,3 +54,13 @@ double bin2dec(vektor_osob &population, int n) {
 	x = -1 + (2 * sum) / (pow(2, 22) - 1);
 	return x;
 }
+
+//funkcja oceny przystosowania
+void fitness(vektor_osob &population)
+{
+	double x;
+	for (int i = 0; i < COUNT; i++) {
+		x = bin2dec(population, i);
+		population[i].mark = sin(2 * x) + pow(cos(4 * x), 3);	//przystosowanie liczymy wstawiaj?c "wartos?" danego osobnika do podanego wzoru
+	}
+}
