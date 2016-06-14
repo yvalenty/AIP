@@ -64,3 +64,20 @@ void fitness(vektor_osob &population)
 		population[i].mark = sin(2 * x) + pow(cos(4 * x), 3);	//przystosowanie liczymy wstawiaj?c "wartos?" danego osobnika do podanego wzoru
 	}
 }
+
+//funkcja licz?ca prawdopodobie?stwo wybrania danego osobnika 
+double select_prob(vektor_osob &population) {
+	double sum = 0;
+	for (int i = 0; i < COUNT; i++) {
+		population[i].mark = population[i].mark + 2.0;	/* tu dodajemy 2.0 dla tego ?e w niekt?rych przypadkach
+														warto?? prystosowania jest ujemna co jest niedopuszczalne przy u?yciu metody ruletki.
+														Wybra?em 2.0 dla tego, ?e to jest maksymalna warto?? ujemna, kt?r? mo?emy dosta? oceniaj?c warto?? przystosowania,
+														wi?c niezale?nie od otzrzymanej warto??i na ko?cu zawsze b?dzie liczba wi?ksza od 0
+														*/
+		sum += abs(population[i].mark); //suma wszystkich warto??i przystosowa? dla danej populacji
+	}
+	for (int i = 0; i < COUNT; i++) {
+		population[i].probability = population[i].mark / sum; //prawdopodobie?stwo wybrania danego osobnika 
+	}
+	return sum;
+}
