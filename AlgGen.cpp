@@ -43,3 +43,14 @@ void initialize(vektor_osob &population)
 		population.push_back(*osobnik);
 	}
 }
+
+//funkcja konwertacji liczby binarnej w dziesi?tkow?
+double bin2dec(vektor_osob &population, int n) {
+	double sum = 0.0;
+	double x = 0.0;
+	for (int i = D - 1; i >= 0; i--) {
+		sum += population[n].dna[i] * pow(2, i);
+	}
+	x = -1 + (2 * sum) / (pow(2, 22) - 1);
+	return x;
+}
